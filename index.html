@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hold shift to check multiple checkboxes</title>
+   <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="inbox">
+        <div class="item">
+          <input type="checkbox">
+          <p>Muhammed Buhari</p>
+        </div>
+        <div class="item">
+          <input type="checkbox">
+          <p>Asiwaju Bola Ahmed Tinubu</p>
+        </div>
+        <div class="item">
+          <input type="checkbox">
+          <p>Atiku Abubakar</p>
+        </div>
+        <div class="item">
+          <input type="checkbox">
+          <p>Peter Obi</p>
+        </div>
+        <div class="item">
+          <input type="checkbox">
+          <p>Omoyele Sowore</p>
+        </div>
+        <div class="item">
+          <input type="checkbox">
+          <p>Rabiu Kwankwaso</p>
+        </div>
+        <div class="item">
+          <input type="checkbox">
+          <p>Prof Yemi osinbajo</p>
+        </div>
+        <div class="item">
+          <input type="checkbox">
+          <p>Nyesom Wike</p>
+        </div>
+        <div class="item">
+          <input type="checkbox">
+          <p>Kashim Shettima</p>
+        </div>
+      </div>
+
+  <script>
+    const checkboxes = document.querySelectorAll('.inbox input[type="checkbox"]');
+
+
+    let lastChecked;
+
+     function handleCheck(e) {
+        //check if they had the shift key down
+        //And check that they are checking it
+        let inBetween = false;
+        if (e.shiftKey && this.checked) {
+            //go ahead and do what we please
+            //loop over every single checkbox
+            checkboxes.forEach(checkbox => {
+                console.log(checkbox);
+            if ( checkbox === this || checkbox === lastChecked) {
+                inBetween = !inBetween;
+                console.log('check inbetween');
+            }
+            if(inBetween) {
+                checkbox.checked = true;
+            }
+            });
+        }
+        lastChecked = this;
+     }
+
+    checkboxes.forEach(checkbox => checkbox.addEventListener('click',
+    handleCheck)); 
+  </script>
+</body>
+</html>
